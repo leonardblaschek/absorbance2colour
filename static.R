@@ -10,11 +10,11 @@ data(list = colorscience_data, package = "colorscience")
 wavelength1 <- 450
 width1 <- 20
 
-wavelength2 <- 640
+wavelength2 <- 660
 width2 <- 20
 
 # select incident light
-light <- "D65"
+light <- "E"
 
 # transform incident light spectrum to count data
 inc_light <- as_tibble(illuminants[, c("wlnm", light)]) %>%
@@ -61,8 +61,8 @@ spec_mat <- data.matrix(spec)
 
 # transform transmittance spectrum into XYZ colour coordinates and then RGB values
 XYZ_col <- colorscience::spectra2XYZ(spec_mat, illuminantIn = illuminants[, c("wlnm", light)])
-# RGB_col <- colorscience::XYZ2RGB(XYZ_col, illuminant = light)
-RGB_col <- colorscience::XYZtoRGB(XYZ_col[1], XYZ_col[2], XYZ_col[3])
+RGB_col <- colorscience::XYZ2RGB(XYZ_col, illuminant = light)
+# RGB_col <- colorscience::XYZtoRGB(XYZ_col[1], XYZ_col[2], XYZ_col[3])
 
 # correct RGB values < 0 and > 1 (unclear to me why they exist)
 RGB_col <- ifelse(RGB_col < 0, 0, ifelse(RGB_col > 1, 1, RGB_col))

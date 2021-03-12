@@ -278,6 +278,7 @@ server <- function(input, output) {
       theme_void() +
       annotate("point",
                shape = 21,
+               alpha = 0.8,
                size = 100,
                fill = rgb(RGB_col),
                x = 1,
